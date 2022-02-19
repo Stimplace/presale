@@ -15,7 +15,7 @@ contract FDAI is ERC20, ERC20Burnable, Pausable, AccessControl {
         _grantRole(PAUSER_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
     }
-    
+
     function pause() public onlyRole(PAUSER_ROLE) {
         _pause();
     }
@@ -28,11 +28,11 @@ contract FDAI is ERC20, ERC20Burnable, Pausable, AccessControl {
         _mint(to, amount);
     }
 
-    function _beforeTokenTransfer(address from, address to, uint256 amount)
-        internal
-        whenNotPaused
-        override
-    {
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal override whenNotPaused {
         super._beforeTokenTransfer(from, to, amount);
     }
 }
